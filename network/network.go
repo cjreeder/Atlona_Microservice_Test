@@ -30,7 +30,8 @@ type command struct {
 	username []string
 	password []string
 	addrInput []string
-	addrOutput []string
+	addrVOutput []string
+	addrAOutput []string
 }
 /* Left over from previous code
 type Node struct {
@@ -49,7 +50,7 @@ type Node struct {
 //func (n *Node) OpenConnection() error {
 func OpenConnection() error {
         //var mess = []byte(`{"username":"admin","password":"Atlona","config_set":{"name":"ip_input","config":[{"multicast": {"address": "239.1.1.1"},"name": "ip_input1"},{"multicast": {"address": "239.10.1.1"},"name": "ip_input3"}]}}`)
-	
+
         var m = []byte(`{"username":"admin","password":"Atlona","config_set":{"name":"ip_input","config":[{"multicast": {"address": "239.1.1.2"},"name": "ip_input1"},{"multicast": {"address": "239.10.1.2"},"name": "ip_input3"}]}}`)
 
         //var mess = []byte(`{"username":"admin","password":"Atlona","config_set":{"name":"ip_input","config":[{"multicast": {"address": "239.1.1.11"},"name": "ip_input1"},{"multicast": {"address": "239.10.1.11"},"name": "ip_input3"}]}}`)
@@ -67,13 +68,16 @@ func OpenConnection() error {
         //n.Conn = conn
         if conn != nil {
 		fmt.Println(conn)
-		fmt.Println(test) 
+		fmt.Println(test)
 	}
 	err = conn.WriteMessage(websocket.TextMessage, m)
 	if err != nil {
 		log.Println(err)
 		return(err)
 	}
+	// Need to read the message after I write a message and pip it out so that it can be logged
+	// Build a error capturing setup based upon conn.ReadMessage -> dump message to variable and check
+
 	conn.Close()
         return nil
 }
