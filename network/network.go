@@ -89,10 +89,11 @@ func OpenConnection() error {
 	}
 
 	// Read Back any message that is returned from Writing the Message
-	_, msg, err := conn.ReadMessage()
+	_, msgd, err := conn.ReadMessage()
 	if err != nil {
 		log.Println(err)
 	}
+	msg := string(msgd)
 	fmt.Println(msg)
 	conn.Close()
 	return nil
