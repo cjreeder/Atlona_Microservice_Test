@@ -2,7 +2,7 @@ package main
 
 import (
 	//"fmt"
-	"atlona/network"
+	"github.com/cjreeder/Atlona_Microservice_Test/network"
 )
 
 func main() {
